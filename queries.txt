@@ -1,0 +1,113 @@
+Student that studies the subjects that teaches teaches : Which student has which teacher (Very simplified)
+
+PREFIX : <http://ns.msc_dsai.fr/project/schema#>
+PREFIX d: <http://ns.msc_dsai.fr/project/data#>
+SELECT ?st ?tc
+WHERE {
+	?st :isStudying ?m
+	?tc :isTeaching ?m
+}
+
+
+Who is the dean of the component of Mario ?
+
+PREFIX : <http://ns.msc_dsai.fr/project/schema#>
+PREFIX d: <http://ns.msc_dsai.fr/project/data#>
+SELECT ?Dean
+WHERE {
+
+	<http://ns.msc_dsai.fr/project/data#Mario> :studiesAtDepartment ?d
+	?Dean a :Dean
+	?Dean :worksAtDepartment ?d
+	
+}
+
+Count the number of people working at a given department :
+
+PREFIX : <http://ns.msc_dsai.fr/project/schema#>
+PREFIX d: <http://ns.msc_dsai.fr/project/data#>
+SELECT (count(?p) as ?count)
+WHERE {
+	?p :worksAtDepartment :ScienceTechnology .
+}
+
+
+
+Count the number of people working in each department :
+
+PREFIX : <http://ns.msc_dsai.fr/project/schema#>
+PREFIX d: <http://ns.msc_dsai.fr/project/data#>
+SELECT (count(?p) as ?count) ?d
+WHERE {
+	?p :worksAtDepartment ?d
+}
+GROUP BY (?d)
+
+
+
+Get all the emails of the different professors :
+
+PREFIX : <http://ns.msc_dsai.fr/project/schema#>
+PREFIX d: <http://ns.msc_dsai.fr/project/data#>
+SELECT ?teacher ?email
+WHERE {
+  ?teacher a :Teacher ;
+           :worksAtDepartment ?department ;
+           :email ?email .
+}
+
+Campuses where we can find a swimming pool :
+
+PREFIX : <http://ns.msc_dsai.fr/project/schema#>
+PREFIX d: <http://ns.msc_dsai.fr/project/data#>
+
+SELECT ?c
+WHERE {
+ 	?a a :SwimmingPool
+	?a :onCampus ?c
+}
+
+
+Find the number of welcome capacity in each buildiong of the university :
+
+PREFIX : <http://ns.msc_dsai.fr/project/schema#>
+PREFIX d: <http://ns.msc_dsai.fr/project/data#>
+
+SELECT ?building (SUM(?capacity) AS ?totalCapacity)
+WHERE {
+	?room a :Room ;
+	      :inBuilding ?building ;
+	      :capacity ?capacity .
+
+}
+GROUP BY ?building
+
+
+
+Retrieve the names and ages of all the students who are studying "Data Science" 
+and are also studying "Machine Learning":
+
+PREFIX : <http://ns.msc_dsai.fr/project/schema#>
+PREFIX d: <http://ns.msc_dsai.fr/project/data#>
+
+SELECT ?name ?age
+WHERE {
+  ?person rdf:type :Student .
+  ?person :name ?name .
+  ?person :age ?age .
+  ?person :isStudying "Data Science" .
+  ?person :isStudying "Machine Learning" .
+}
+
+
+Find all the rooms with video projectors in each building :
+
+PREFIX : <http://ns.msc_dsai.fr/project/schema#>
+PREFIX d: <http://ns.msc_dsai.fr/project/data#>
+
+SELECT ?room ?b
+WHERE {
+	?room :videoProjector true
+	?room :inBuilding ?b
+
+}

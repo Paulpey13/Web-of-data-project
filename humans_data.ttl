@@ -1,0 +1,540 @@
+@prefix : <http://ns.msc_dsai.fr/project/schema#> .
+@prefix  d: <http://ns.msc_dsai.fr/project/data#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+############################## Belongs to governance :
+
+   #Department :
+
+d:Presidency rdf:type :Governance;
+    :name "Presidency" .
+
+d:AccountingAgency rdf:type :Governance ;
+    :name "Accounting Agency".
+
+d:VicePresidents rdf:type :Governance ;
+    :name "Vice-Presidents".
+
+   #Persons :
+d:Eric rdf:type :Man, :President;
+   :name "Eric Berthon";
+   :age 52;
+   :email "eric.berthon@univ-amu.fr";
+   :worksAtDepartment :Presidency.
+
+d:Maryline rdf:type :Woman, :VicePresident;
+   :name "Maryline crivello";
+   :age 45;
+   :email "maryline.crivello@univ-amu.fr";
+   :worksAtDepartment :VicePresidents.
+
+d:John rdf:type :Man, :Accountant;
+   :name "John Simons";
+   :age 41;
+   :email "john.simons@univ-amu.fr";
+   :worksAtDepartment :AccountingAgency.
+
+d:Mariah rdf:type :Woman, :Accountant;
+   :name "Mariah Triangle";
+   :age 39;
+   :email "Mariah.triangle@univ-amu.fr";
+   :worksAtDepartment :AccountingAgency.
+
+
+############################## Belongs to CentralService :
+
+   #Department :
+:Daji rdf:type :CentralService ;
+    :name "DAJI - Legal and Institutional Affairs Department".
+
+:Dcs rdf:type :CentralService ;
+    :name "DCS - Culture and Society Department".
+
+:Drh rdf:type :CentralService ;
+    :name "DRH - Human Resources Department".
+
+:Deve rdf:type :CentralService ;
+    :name "DEVE - Studies and Student Life Department".
+
+   #Persons :
+
+d:Jeanne rdf:type :Woman ;
+    :name "Jeanne Dupont" ;
+    :age 35 ;
+    :email "jeanne.dupont@daji.univ-amu.fr" ;
+    :worksAtDepartment :Daji .
+
+d:Robert rdf:type :Man, :Researcher ;
+    :name "Robert Smith" ;
+    :age 28 ;
+    :email "robert.smith@deve.univ-amu.fr" ;
+    :worksAtDepartment :Deve .
+
+d:Sophie rdf:type :Woman, :Accountant ;
+   :name "Sophie Martin" ;
+   :age 42 ;
+   :email "sophie.martin@drh.univ-amu.fr" ;
+   :worksAtDepartment :Drh .
+
+d:William rdf:type :Man, :Teacher ;
+    :name "William Johnson" ;
+    :age 31 ;
+    :email "william.johnson@dcs.univ-amu.fr" ;
+    :worksAtDepartment :Dcs .
+
+
+############################## Belongs to SharedService :
+
+
+   # Department
+:Dosi rdf:type :SharedService ;
+    :name "DOSI - Operational Direction of Information System"@en.
+:Dri rdf:type :SharedService ;
+    :name "DRI - International Relations Department"@en.
+:Scd rdf:type :SharedService ;
+    :name "SCD - Shared Documentation Service"@en.
+:Suio rdf:type :SharedService ;
+    :name "SUIO - University Insertion and Orientation Service"@en.
+:Suaps rdf:type :SharedService ;
+    :name "SUAPS - University Service of Physical and Sports Activities of Aix-Marseille"@en.
+   # Persons 
+
+d:Sophie rdf:type :ITSpecialist ;
+   :name "Sophie Chen";
+   :age 28;
+   :email "sophie.chen@dosi.univ-amu.fr";
+   :worksAtDepartment :Dosi.
+
+d:AdamL rdf:type :InternationalRelationsOfficer ;
+   :name "Adam Lee";
+   :age 35;
+   :email "adam.lee@dri.univ-amu.fr";
+   :worksAtDepartment :Dri.
+
+d:Julie rdf:type :Librarian ;
+   :name "Julie Martin";
+   :age 40;
+   :email "julie.martin@scd.univ-amu.fr";
+   :worksAtDepartment :Scd.
+
+d:Emma rdf:type :StudentLifeAdvisor ;
+   :name "Emma Smith";
+   :age 32;
+   :email "emma.smith@suio.univ-amu.fr";
+   :worksAtDepartment :Suio.
+
+d:Maxime rdf:type :PhysicalTrainer ;
+   :name "Maxime Dupont";
+   :age 27;
+   :email "maxime.dupont@suaps.univ-amu.fr";
+   :worksAtDepartment :Suaps.
+
+############################## Belongs to Component :
+
+   # Department : 
+
+:Alsh rdf:type :Component ;
+    :name "Arts, Letters, Languages and Humanities Sector"@en.
+:Scpo rdf:type :Component ;
+    :name "Law and Political Science Sector"@en.
+:Eco rdf:type :Component ;
+    :name "Economics and Management Sector"@en.
+:Health rdf:type :Component ;
+    :name "Health Sector"@en.
+:ScienceTechnology rdf:type :Component ;
+    :name "Science and Technology Sector"@en.
+:Multi rdf:type :Component ;
+    :name "Multidisciplinary Components"@en.
+
+   # Deans : 
+d:Max rdf:type :Dean, :Man ;
+   :name "Max menace";
+   :age 72;
+   :email "max.menace@alsh.univ-amu.fr";
+   :worksAtDepartment :Alsh.
+
+d:Susan rdf:type :Dean, :Woman ;
+   :name "Susan Lee";
+   :age 61;
+   :email "susan.lee@scpo.univ-amu.fr";
+   :worksAtDepartment :Scpo.
+
+d:Peter rdf:type :Dean, :Man ;
+   :name "Peter Anderson";
+   :age 55;
+   :email "peter.anderson@eco.univ-amu.fr";
+   :worksAtDepartment :Eco.
+
+d:Lisa rdf:type :Dean, :Woman ;
+   :name "Lisa Smith";
+   :age 59;
+   :email "lisa.smith@health.univ-amu.fr";
+   :worksAtDepartment :Health.
+
+d:David rdf:type :Dean, :Man ;
+   :name "David Brown";
+   :age 52;
+   :email "david.brown@st.univ-amu.fr";
+   :worksAtDepartment :ScienceTechnology.
+
+d:Eva rdf:type :Dean, :Woman ;
+   :name "Eva Taylor";
+   :age 89;
+   :email "eva.taylor@multi.univ-amu.fr";
+   :worksAtDepartment :Multi.
+
+
+############################## Teachers :
+
+d:Manon rdf:type :Teacher, :Woman ;
+   :name "Manon Taylor";
+   :age 38;
+   :email "Manon.taylor@multi.univ-amu.fr";
+   :worksAtDepartment :Multi;
+   :isTeaching "pedagogy".
+
+d:Lucie rdf:type :Teacher, :Woman;
+   :name "Lucie Dubois";
+   :age 32;
+   :email "lucie.dubois@alsh.univ-amu.fr";
+   :isTeaching "French Literature";
+   :worksAtDepartment :Alsh.
+
+d:Tom rdf:type :Teacher,:Researcher, :Man;
+   :name "Tom Hardy";
+   :age 51;
+   :email "tom.hardy@scpo.univ-amu.fr";
+   :isTeaching "Political Theory";
+   :worksAtDepartment :Scpo;
+   :searchFor :Qarma.
+
+d:LisaW rdf:type :Teacher, :Woman;
+   :name "Lisa Wilson";
+   :age 35;
+   :email "lisa.wilson@eco.univ-amu.fr";
+   :isTeaching "Marketing";
+   :worksAtDepartment :Eco.
+
+d:Sarah rdf:type :Teacher, :Woman;
+   :name "Sarah Miller";
+   :age 41;
+   :email "sarah.miller@health.univ-amu.fr";
+   :isTeaching "Anatomy";
+   :worksAtDepartment :Health.
+
+d:PeterJ rdf:type :Teacher, :Man;
+   :name "Peter Johnson";
+   :age 37;
+   :email "peter.johnson@health.univ-amu.fr";
+   :isTeaching "Physiology";
+   :worksAtDepartment :Health.
+
+d:Kevin rdf:type :Teacher, :Man;
+   :name "Kevin Smith";
+   :age 49;
+   :email "kevin.smith@st.univ-amu.fr";
+   :isTeaching "Computer Science";
+   :worksAtDepartment :ScienceTechnology.
+
+d:Marie rdf:type :Teacher, :Woman;
+   :name "Marie Rodriguez";
+   :age 44;
+   :email "marie.rodriguez@st.univ-amu.fr";
+   :isTeaching "Data Science";
+   :worksAtDepartment :ScienceTechnology.
+
+d:Rosa rdf:type :Teacher, :Researcher,:Woman;
+   :name "Rosa Garcia";
+   :age 37;
+   :email "rosa.garcia@cs.univ-amu.fr";
+   :isTeaching "Computer Science";
+   :searchFor :TC;
+   :worksAtDepartment :ScienceTechnology.
+
+d:Javier rdf:type :Teacher, :Man;
+   :name "Javier Fernandez";
+   :age 48;
+   :email "javier.fernandez@cs.univ-amu.fr";
+   :isTeaching "Machine Learning", "Data Mining";
+   :worksAtDepartment :ScienceTechnology.
+
+d:Carmen rdf:type :Teacher, :Woman;
+   :name "Carmen Navarro";
+   :age 55;
+   :email "carmen.navarro@cs.univ-amu.fr";
+   :isTeaching "Artificial Intelligence";
+   :worksAtDepartment :ScienceTechnology.
+
+d:Lucia rdf:type :Teacher, :Researcher, :Woman;
+   :name "Lucia Gomez";
+   :age 43;
+   :email "lucia.gomez@cs.univ-amu.fr";
+   :isTeaching "Computer Networks", "Distributed Systems";
+   :worksAtDepartment :ScienceTechnology;
+   :searchFor :AICC.
+
+############################## Students :
+   #I will only implement student from :ScienceTechnology departement so we can do some queries and see relationships
+
+d:Mario rdf:type :Student, :Man;
+   :name "Mario Itsme";
+   :age 21;
+   :email "mario.itsme@etu.univ-amu.fr";
+   :isStudying "Data Science","Machine Learning","Statistics","Web of Data";
+   :studiesAtDepartment :ScienceTechnology.
+
+d:Giuseppe rdf:type :Student, :Man ;
+    :name "Giuseppe Rossi" ;
+    :age 21 ;
+    :email "giuseppe.rossi@etu.univ-amu.fr" ;
+    :isStudying "Computer Science", "Data Science", "Artificial Intelligence" ;
+    :studiesAtDepartment :ScienceTechnology .
+
+d:Amina rdf:type :Student, :Woman ;
+    :name "Amina Khalid" ;
+    :age 22 ;
+    :email "amina.khalid@etu.univ-amu.fr" ;
+    :isStudying "Software Engineering", "Machine Learning", "Cybersecurity" ;
+    :studiesAtDepartment :ScienceTechnology .
+
+d:Vittoria rdf:type :Student, :Woman ;
+    :name "Vittoria Moretti" ;
+    :age 23 ;
+    :email "vittoria.moretti@etu.univ-amu.fr" ;
+    :isStudying "Web Development", "Database Management", "Artificial Intelligence" ;
+    :studiesAtDepartment :ScienceTechnology .
+
+d:Karim rdf:type :Student, :Man ;
+    :name "Karim Saidi" ;
+    :age 22 ;
+    :email "karim.saidi@etu.univ-amu.fr" ;
+    :isStudying "Computer Science", "Cybersecurity", "Machine Learning" ;
+    :studiesAtDepartment :ScienceTechnology .
+
+
+############################## Campus and places :
+
+d:Aix rdf:type :Campus;
+   :name "Campus d'Aix-en-Provence";
+   :address "3 Av. Robert Schuman 13090".
+
+d:Luminy rdf:type :Campus;
+   :name "Campus de Luminy";
+   :address "163 Av. de Luminy 13009".
+
+d:StCharles rdf:type :Campus;
+   :name "Campus de St-Charles";
+   :address "3 Pl. Victor Hugo 13001".
+
+   ############################### Buildings
+
+d:BuildingA rdf:type :Building;
+   :onCampus :Luminy.
+
+d:LibraryA rdf:type :Library;
+   :onCampus :Luminy.
+
+d:GymnaseA rdf:type :Gymnase;
+   :onCampus :Luminy.
+
+d:AmphitheaterA rdf:type :Amphitheater;
+   :onCampus :Luminy.
+
+d:BuildingB rdf:type :Building;
+   :onCampus :StCharles.
+
+d:LibraryB rdf:type :Library;
+   :onCampus :StCharles.
+
+d:GymnaseB rdf:type :Gymnase;
+   :onCampus :StCharles.
+
+d:AmphitheaterB rdf:type :Amphitheater;
+   :onCampus :StCharles.
+
+d:BuildingC rdf:type :Building;
+   :onCampus :Aix.
+
+d:LibraryC rdf:type :Library;
+   :onCampus :Aix.
+
+d:GymnaseC rdf:type :Gymnase;
+   :onCampus :Aix.
+
+d:AmphitheaterC rdf:type :Amphitheater;
+   :onCampus :Aix.
+
+d:BuildingD rdf:type :Building;
+   :onCampus :Luminy.
+
+d:LibraryD rdf:type :Library;
+   :onCampus :Luminy.
+
+d:SwimmingPoolA rdf:type :SwimmingPool;
+   :onCampus :Luminy.
+
+   ############################### Rooms
+
+d:room192 rdf:type :Room;
+   :inBuilding :BuildingD;
+   :capacity 23;
+   :roomNumber 192;
+   :videoProjector false .
+
+d:room23 rdf:type :Room;
+   :inBuilding :BuildingD;
+   :capacity 29;
+   :roomNumber 23;
+   :videoProjector false .
+
+d:room1 rdf:type :Room;
+   :inBuilding :BuildingD;
+   :capacity 43;
+   :roomNumber 1;
+   :videoProjector false .
+
+d:room99 rdf:type :Room;
+   :inBuilding :BuildingD;
+   :capacity 13;
+   :roomNumber 99;
+   :videoProjector false .
+
+d:room101 rdf:type :Room;
+   :inBuilding :BuildingA;
+   :capacity 30;
+   :roomNumber 101;
+   :videoProjector true .
+
+d:room102 rdf:type :Room;
+   :inBuilding :BuildingA;
+   :capacity 25;
+   :roomNumber 102;
+   :videoProjector false .
+
+d:room201 rdf:type :Room;
+   :inBuilding :BuildingB;
+   :capacity 20;
+   :roomNumber 201;
+   :videoProjector true .
+
+d:room202 rdf:type :Room;
+   :inBuilding :BuildingB;
+   :capacity 18;
+   :roomNumber 202;
+   :videoProjector false .
+
+d:room301 rdf:type :Room;
+   :inBuilding :BuildingC;
+   :capacity 35;
+   :roomNumber 301;
+   :videoProjector true .
+
+d:room302 rdf:type :Room;
+   :inBuilding :BuildingC;
+   :capacity 40;
+   :roomNumber 302;
+   :videoProjector false .
+
+d:room103 rdf:type :Room;
+   :inBuilding :LibraryD;
+   :capacity 15;
+   :roomNumber 103;
+   :videoProjector false .
+
+
+############################## Research centers and teams:
+
+
+   ############################## Research Center
+d:Inria rdf:type :ResearchCenter;
+   :name "Inria".
+
+d:LIS rdf:type :ResearchCenter;
+   :name "LIS lab".
+
+d:IPC rdf:type :ResearchCenter;
+   :name "Institut-Paoli-Calmettes".
+
+   ############################## Research Team
+
+d:AIO rdf:type :ResearchTeam;
+   :name "AIO";
+   :researchField "Deep Learning" ;
+   :belongsTo :Inria.
+
+d:AICC rdf:type :ResearchTeam;
+   :name "AICC";
+   :researchField "Image classification" ;
+
+   :belongsTo :Inria .
+
+d:TC rdf:type :ResearchTeam;
+   :name "TC";
+   :researchField "Cancer" ;
+
+   :belongsTo :IPC .
+
+d:SCHMO rdf:type :ResearchTeam;
+   :name "SCHMO";
+   :researchField "Biology";
+
+   :belongsTo :IPC .
+
+d:Qarma rdf:type :ResearchTeam;
+   :name "Qarma";
+   :researchField "Deep Learning";
+
+   :belongsTo :LIS .
+
+d:SCHMO rdf:type :ResearchTeam;
+   :name "SCHMO";
+   :researchField "DataScience";
+   :belongsTo :LIS .
+   
+
+   ############################## Researcher :
+
+d:Christianne rdf:type :Researcher, :Woman ;
+   :name "Christianne marie" ;
+   :age 61 ;
+   :email "Christianne.marie@univ-amu.fr" ;
+   :searchFor :SCHMO.
+    
+d:Jorge rdf:type :Researcher, :Man;
+   :name "Jorge Silva";
+   :age 34 ;
+   :email "jorge.silva@inria.fr";
+   :searchFor :AIO.
+
+d:Marcia rdf:type :Researcher, :Woman;
+   :name "Marcia Oliveira";
+   :age 42 ;
+   :email "marcia.oliveira@inria.fr";
+   :searchFor :AICC.
+
+d:Carlos rdf:type :Researcher, :Man;
+   :name "Carlos Almeida";
+   :age 29 ;
+   :email "carlos.almeida@ipc.fr";
+   :searchFor :TC.
+
+d:Ana rdf:type :Researcher, :Woman;
+   :name "Ana Souza";
+   :age 45 ;
+   :email "ana.souza@ipc.fr";
+   :searchFor :SCHMO.
+
+d:Lucas rdf:type :Researcher, :Man;
+   :name "Lucas Santos";
+   :age 31 ;
+   :email "lucas.santos@lislab.fr";
+   :searchFor :Qarma.
+
+d:Fernanda rdf:type :Researcher, :Woman;
+   :name "Fernanda Lima";
+   :age 38 ;
+   :email "fernanda.lima@lislab.fr";
+   :searchFor :SCHMO.

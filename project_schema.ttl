@@ -1,0 +1,332 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix :     <http://ns.msc_dsai.fr/project/schema#> . 
+
+#Source for university organisation from my previous university : https://www.univ-amu.fr/fr/public/organisation-daix-marseille-universite
+
+############################### Persons
+
+:Person a rdfs:Class ;
+    rdfs:label "Person"@en,
+               "Personne"@fr;
+    rdfs:comment "A human being"@en,
+                 "Un être humain"@fr.
+
+:Woman a rdfs:Class ;
+    rdfs:label "Woman"@en, "Femme"@fr ;
+    rdfs:comment "A human female"@en,
+                 "Une femme humaine"@fr ;
+    rdfs:subClassOf :Person .
+
+:Man a rdfs:Class ;
+    rdfs:label "Man"@en, "Homme"@fr ;
+    rdfs:comment "A human male"@en,
+                 "Un homme humain"@fr ;
+    rdfs:subClassOf :Person .
+
+# ----- Properties ----- #
+:age a rdf:Property ;
+    rdfs:label "age"@en, "âge"@fr ;
+    rdfs:comment "Age of a person"@en,
+                "Age d'une personne"@fr ;
+    rdfs:domain :Person;
+    rdfs:range xsd:Integer.
+
+:name a rdf:Property ;
+    rdfs:label "name"@en, "nom"@fr ;
+    rdfs:comment "Name of something"@en,
+                "Nom d'une entité"@fr ;
+    #no domain because almost every classes needs a name
+    rdfs:range rdf:literals.
+
+:email a rdf:Property ;
+    rdfs:label "name"@en, "nom"@fr ;
+    rdfs:comment "Email of a person"@en,
+                "Email d'une personne"@fr ;
+    rdfs:domain :Person ;
+    rdfs:range rdf:literals.
+
+############################### Institutions
+
+#In case we want to define multiple universities : A super class Insitution.
+:Institution a rdfs:Class ;
+    rdfs:label "Institution"@en, "Institution"@fr ;
+    rdfs:comment "An organization that is dedicated to conducting research or providing education"@en,
+                "Une organisation qui est dédiée à la recherche ou à l'éducation"@fr .
+
+:University a rdfs:Class ;
+    rdfs:label "University"@en, "Université"@fr ;
+    rdfs:comment "An institution of higher education that grants degrees and diplomas"@en,
+                "Une institution d'enseignement supérieur qui décerne des diplômes et des certificats"@fr ;
+    rdfs:subClassOf :Institution.
+
+############################## University organigram
+
+:UniStructure a rdfs:Class ;
+    rdfs:label "University structure"@en, "Structure universitaire"@fr ;
+    rdfs:comment "A component of a university, such as a department or administrative unit."@en,
+                "Une composante d'une université, telle qu'un département ou une unité administrative."@fr .
+
+:Governance a rdfs:Class ;
+    rdfs:label "Governance"@en, "Gouvernance"@fr ;
+    rdfs:comment "The governing body or administrative body of a university."@en, "L'organe de gouvernance ou d'administration d'une université."@fr ;
+    rdfs:subClassOf :UniStructure.
+
+:Foundation a rdfs:Class ;
+    rdfs:label "Foundation"@en, "Fondation"@fr ;
+    rdfs:comment "An organization that provides financial support to a university or specific programs within a university."@en,
+     "Une organisation qui fournit un soutien financier à une université ou à des programmes spécifiques au sein d'une université."@fr ;
+    rdfs:subClassOf :UniStructure.
+
+:CentralService a rdfs:Class ;
+    rdfs:label "Central service"@en, "Service central"@fr ;
+    rdfs:comment "A service or department that provides support and resources to the entire university."@en, "Un service ou un département qui fournit un soutien et des ressources à l'ensemble de l'université."@fr ;
+    rdfs:subClassOf :UniStructure.
+
+:SharedService a rdfs:Class ;
+    rdfs:label "Shared service"@en, "Service commun"@fr ;
+    rdfs:comment "A service or department that provides support and resources to multiple units or departments within a university."@en, "Un service ou un département qui fournit un soutien et des ressources à plusieurs unités ou départements au sein d'une université."@fr ;
+    rdfs:subClassOf :UniStructure.
+
+:Component a rdfs:Class ;
+    rdfs:label "Component"@en, "Composante"@fr ;
+    rdfs:comment "A unit or department within a university that has a specific academic or administrative function."@en, "Une unité ou un département au sein d'une université qui a une fonction académique ou administrative spécifique."@fr ;
+    rdfs:subClassOf :UniStructure.
+
+
+
+# ----- Properties ----- #
+:worksAtDepartment a rdf:Property ;
+    rdfs:label "works at department"@en, "Travaille dans un departement"@fr ;
+    rdfs:comment "a person works in a department"@en,
+                "Une personne travaille dans un département"@fr ;
+    rdfs:domain :Person;
+    rdfs:range :UniStructure.
+
+:studiesAtDepartment a rdf:Property ;
+    rdfs:label "studies in a component"@en, "Etudie dans une composante"@fr ;
+    rdfs:comment "a person studies in a component"@en,
+                "Une personne étudie dans une composante"@fr ;
+    rdfs:domain :Student;
+    rdfs:range :Component.
+    
+
+############################## Campuses and places :
+# ----- Classes ----- #
+
+:Campus a rdfs:Class ;
+    rdfs:label "Campus"@en, "Campus universitaire"@fr ;
+    rdfs:comment "A university campus where students, faculty, and staff work and live"@en,
+                 "Un campus universitaire où les étudiants, le corps professoral et le personnel travaillent et vivent"@fr .
+
+:Building a rdfs:Class ;
+    rdfs:label "Building"@en, "Bâtiment"@fr ;
+    rdfs:comment "A building of university"@en,
+                 "Un batîment d'une unversité"@fr .
+
+:Room a rdfs:Class ;
+    rdfs:label "Room"@en, "Salle"@fr ;
+    rdfs:comment "A space designed or reserved for a particular activity or group of people"@en,
+                 "Un espace conçu ou réservé pour une activité ou un groupe de personnes particulier"@fr .
+
+:Amphitheatre a rdfs:Class ;
+    rdfs:label "Amphitheater"@en, "Amphithéâtre"@fr ;
+    rdfs:comment "A large room or building with a curved seating area with stairs"@en,
+                 "Une grande salle ou un bâtiment avec une zone d'assise en escalier"@fr ;
+    rdfs:subClassOf :Building .
+
+:Cafeteria a rdfs:Class ;
+    rdfs:label "Cafeteria"@en, "Cafétéria"@fr ;
+    rdfs:comment "A building where meals can be purchased and eaten"@en,
+                 "Un espace de restauration dans un bâtiment où des repas peuvent être achetés et consommés"@fr ;
+    rdfs:subClassOf :Building.
+
+:Gymnasium a rdfs:Class ;
+    rdfs:label "Gymnasium"@en, "Gymnase"@fr ;
+    rdfs:comment "A building equipped for gymnastics, athletics, and other physical exercise"@en,
+                 "un bâtiment équipé pour la gymnastique, l'athlétisme et autres exercices physiques"@fr ;
+    rdfs:subClassOf :Building.
+
+:SwimmingPool a rdfs:Class ;
+    rdfs:label "Swimming pool"@en, "Piscine"@fr ;
+    rdfs:comment "A pool used for swimming, diving, or other water sports"@en,
+                 "Une piscine utilisé pour la natation, la plongée ou d'autres sports nautiques"@fr ;
+    rdfs:subClassOf :Building.
+
+:Library a rdfs:Class ;
+    rdfs:label "Library"@en, "Bibliothèque"@fr;
+    rdfs:comment "A place that contains books, periodicals, and other materials for reading, viewing, or listening"@en,
+"Endroit contenant des livres, des périodiques et d'autres matériels pour la lecture, la visualisation ou l'écoute"@fr ;
+    rdfs:subClassOf :Building.
+
+
+# ----- Properties ----- #
+
+
+:onCampus a rdf:Property ;
+    rdfs:comment "A building is on a campus"@en,
+                "Un batiment est sur un campus"@fr ;
+    rdfs:domain :Building;
+    rdfs:range :Campus.
+
+:address a rdf:Property ;
+    rdfs:comment "Adress of a campus"@en,
+                "Addresse d'un campus"@fr ;
+    rdfs:domain :Campus ;
+    rdfs:range rdf:literals.
+
+:roomNumber a rdf:Property ;
+    rdfs:comment "Number of a room"@en,
+                "Numéro d'une salle"@fr ;
+    rdfs:domain :Room;
+    rdfs:range xsd:Integer.
+
+:capacity a rdf:Property ;
+    rdfs:comment "Number of persons that can enter the room"@en,
+                "Nombre de personne pouvant être dans la salle"@fr ;
+    rdfs:domain :Room;
+    rdfs:range xsd:Integer.
+
+:inBuilding a rdf:Property ;
+    rdfs:comment "In which building is the room"@en,
+                "Dans quel bâtiment est la salle"@fr ;
+    rdfs:domain :Room ;
+    rdfs:range :Building.
+
+#Kind of strange properties but I remember seeing that in my agenda of bachelor
+:videoProjector a rdf:Property ;
+    rdfs:comment "Is there a projector in the room ?"@en,
+                "Il y a t-il un projecteur dans la salle ?"@fr ;
+    rdfs:domain :Room ;
+    rdfs:range xsd:boolean.
+
+############################### Researchs institutions :
+# ----- Classes ----- #
+
+:ResearchCenter a rdfs:Class ;
+    rdfs:label "Research center"@en, "Centre de recherche"@fr ;
+    rdfs:comment "An institution that is principally dedicated to research and development"@en,
+                "Une institution principalement dédiée à la recherche et au développement"@fr .
+
+:ResearchTeam a rdfs:Class ;
+    rdfs:label "Research team"@en, "Équipe de recherche"@fr ;
+    rdfs:comment "A group of individuals who collaborate on research projects"@en,
+                "Un groupe de personnes qui collaborent sur des projets de recherche"@fr.
+
+
+
+# ----- Properties ----- #
+
+:belongsTo a rdf:Property ;
+    rdfs:comment "Team belongs to a center"@en,
+                "Une équipe appartient à un centre"@fr ;
+    rdfs:domain :ResearchTeam;
+    rdfs:range :ResearchCenter.
+
+:researchField a rdf:Property ;
+    rdfs:label "research field"@en, "Domaine de recherche"@fr ;
+    rdfs:domain :ResearchTeam;
+    rdfs:range rdf:literals.
+
+:searchFor a rdf:Property ;
+    rdfs:label "search for"@en, "Recherche pour"@fr ;
+    rdfs:comment "A searcher works in a team"@en,
+            "Un chercheur travaille dans une équipe"@fr ;
+    rdfs:domain :Researcher;
+    rdfs:range :ResearchTeam.
+
+############################### Professions :
+
+:Teacher a rdfs:Class ;
+    rdfs:label "Teacher"@en, "Professeur"@fr ;
+    rdfs:comment "A person who teaches a subject"@en,
+                 "Une personne qui enseigne une discipline"@fr ;
+    rdfs:subClassOf :Person .
+
+:Researcher a rdfs:Class ;
+    rdfs:label "Researcher"@en, "Chercheur"@fr ;
+    rdfs:comment "A person who conducts research"@en,
+                 "Une personne qui réalise des recherches"@fr ;
+    rdfs:subClassOf :Person .
+
+:Student a rdfs:Class ;
+    rdfs:label "Student"@en, "Étudiant"@fr ;
+    rdfs:comment "A person who is studying at university"@en,
+                 "Une personne qui étudie dans une université"@fr ;
+    rdfs:subClassOf :Person .
+
+:President a rdfs:Class ;
+    rdfs:label "President"@en, "Président"@fr ;
+    rdfs:comment "A person who presides over an university"@en,
+                 "Une personne qui préside une université"@fr ;
+    rdfs:subClassOf :Person .
+
+:BIATSS a rdfs:Class ;
+    rdfs:label "BIATSS"@en, "BIATSS"@fr ;
+    rdfs:comment "A person who works in administrative and technical support positions at a university or research institution"@en,
+                 "Une personne qui travaille dans les positions de soutien administratif et technique dans une université ou une institution de recherche"@fr ;
+    rdfs:subClassOf :Person .
+
+:Accountant a rdfs:Class ;
+    rdfs:subClassOf :Person .
+
+:VicePresident a rdfs:Class ;
+    rdfs:label "Vice-President"@en, "Vice-Président"@fr ;
+    rdfs:comment "An individual who holds the position of vice-president in a university."@en,
+                 "Une personne qui occupe le poste de vice-président dans une université."@fr ;
+    rdfs:subClassOf :Person .
+
+:ITSpecialist a rdfs:Class ;
+    rdfs:label "IT Specialist"@en, "Spécialiste en informatique"@fr ;
+    rdfs:comment "A person who provides technical support related to information technology."@en,
+    "Une personne qui fournit un support technique lié à l'informatique."@fr ;
+    rdfs:subClassOf :Person .
+
+:InternationalRelationsOfficer a rdfs:Class ;
+    rdfs:label "International Relations Officer"@en, "Agent de relations internationales"@fr ;
+    rdfs:comment "A person who manages and facilitates international partnerships and programs."@en,
+    "Une personne qui gère et facilite les partenariats et programmes internationaux."@fr ;
+    rdfs:subClassOf :Person .
+
+:Librarian a rdfs:Class ;
+    rdfs:label "Librarian"@en, "Bibliothécaire"@fr ;
+    rdfs:comment "A person who manages and provides access to the library's collection of books and other materials."@en,
+    "Une personne qui gère et donne accès à la collection de livres et autres documents de la bibliothèque."@fr ;
+    rdfs:subClassOf :Person .
+
+:StudentLifeAdvisor a rdfs:Class ;
+    rdfs:label "Student Life Advisor"@en, "Conseiller de vie étudiante"@fr ;
+    rdfs:comment "A person who provides guidance and support to students on matters related to student life."@en,
+    "Une personne qui fournit des conseils et un soutien aux étudiants sur des questions liées à la vie étudiante."@fr ;
+    rdfs:subClassOf :Person .
+
+:PhysicalTrainer a rdfs:Class ;
+    rdfs:label "Physical Trainer"@en, "Entraîneur physique"@fr ;
+    rdfs:comment "A person who provides fitness training and coaching to students and staff."@en,
+    "Une personne qui fournit des entraînements et des conseils en fitness aux étudiants et au personnel."@fr ;
+    rdfs:subClassOf :Person .
+
+:Dean a rdfs:Class ;
+    rdfs:label "Dean"@en, "Doyen"@fr ;
+    rdfs:comment "A person who holds the position of dean in a university or a component."@en, "Une personne qui occupe le poste de doyen dans une université ou une composante."@fr ;
+    rdfs:subClassOf :Person .
+
+
+#Job properties :
+
+    #Teachers :
+:isTeaching a rdf:Property ;
+    rdfs:comment "Which class is teaching the teacher"@en,
+                "Quel matière enseigne le professeur"@fr ;
+    rdfs:domain :Teacher ;
+    rdfs:range rdf:literals.
+
+:isStudying a rdf:Property ;
+    rdfs:comment "Which class is studying the student"@en,
+                "Quel matière étudie l'étudiant"@fr ;
+    rdfs:domain :Student ;
+    rdfs:range rdf:literals.
+
+
